@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Router, NavigationStart } from '@angular/router';
-
-import { UserActions } from '../../../store/actions';
-import * as RootStore from '../../../store';
 import { IUser, UserStatus } from '../../../models';
-import { UserState } from '../../../store/reducers/user';
 import { StoreDrivenComponent } from '../../../shared/store-driven.component';
+import * as RootStore from '../../../store';
+import { UserActions } from '../../../store/actions';
+import { UserState } from '../../../store/reducers/user';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-welcome',

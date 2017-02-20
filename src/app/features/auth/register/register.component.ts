@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
+import { IAuthCredentials, LoginStatus } from '../../../models';
+import { StoreDrivenComponent } from '../../../shared/store-driven.component';
+import * as RootStore from '../../../store';
+import { AuthActions } from '../../../store/actions';
+import { AuthState } from '../../../store/reducers/auth';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { IAuthCredentials, LoginStatus } from '../../../models';
-import { AuthActions } from '../../../store/actions';
-import * as RootStore from '../../../store';
-import { AuthState } from '../../../store/reducers/auth';
-import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 
 @Component({
   selector: 'app-register',

@@ -1,7 +1,7 @@
+import { IUser } from '../../models';
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { FirebaseAuthState, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
-import { IUser } from '../../models';
+import { FirebaseListObservable } from 'angularfire2';
 
 @Injectable()
 export class UserActions {

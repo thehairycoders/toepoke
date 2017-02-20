@@ -1,6 +1,6 @@
-import { OnInit, OnDestroy } from '@angular/core';
+import { OnDestroy, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { Router, NavigationStart } from '@angular/router';
 
 export class StoreDrivenComponent implements OnInit, OnDestroy {
 

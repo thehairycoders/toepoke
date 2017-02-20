@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
-
-import { AuthActions } from './store/actions';
-import * as RootStore from './store';
 import { LoginStatus } from './models';
+import * as RootStore from './store';
+import { AuthActions } from './store/actions';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',

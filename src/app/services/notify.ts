@@ -1,8 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-
 import { AuthActions } from '../store/actions';
-import * as RootStore from '../store';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class NotifyService {

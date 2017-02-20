@@ -1,4 +1,4 @@
-import { AuthProviders, AuthMethods } from 'angularfire2';
+import { AuthMethods, AuthProviders } from 'angularfire2';
 
 export const environment = {
   production: true,  

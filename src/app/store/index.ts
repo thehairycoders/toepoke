@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
-import { compose } from '@ngrx/core/compose';
-import { StoreModule, combineReducers } from '@ngrx/store';
-import { storeLogger } from 'ngrx-store-logger';
-import { EffectsModule } from '@ngrx/effects';
-import { localStorageSync } from 'ngrx-store-localstorage';
-
 import { AuthActions, NotifyActions, UserActions } from './actions';
 import { AuthEffects, NotifyEffects, UserEffects } from './effects';
 import * as fromAuth from './reducers/auth';
 import * as fromNotify from './reducers/notify';
 import * as fromUser from './reducers/user';
+import { NgModule } from '@angular/core';
+import { compose } from '@ngrx/core/compose';
+import { EffectsModule } from '@ngrx/effects';
+import { combineReducers, StoreModule } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { storeLogger } from 'ngrx-store-logger';
 
 export interface AppState {
   authState: fromAuth.AuthState;
@@ -24,7 +23,7 @@ export const actions = [
 ];
 
 export const composeStore = compose(
-  storeLogger(),
+ // storeLogger(),
   localStorageSync(['authState']),
   combineReducers)
   ({

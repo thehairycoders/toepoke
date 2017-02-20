@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
 import { NotifyActions } from './../actions';
+import { Action } from '@ngrx/store';
 
 export interface NotifyState {
     message: string;

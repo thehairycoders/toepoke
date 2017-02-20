@@ -1,19 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
+import 'hammerjs';
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
+import { NotifyComponent, ToolbarComponent } from './components';
+import { AuthGuard, AuthService, NotifyService, UserService } from './services';
+import { SharedStoreModule } from './store';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { AngularFireModule } from 'angularfire2';
-import { environment } from '../environments/environment';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import 'hammerjs';
-
-import { SharedStoreModule } from './store';
-import { AppComponent } from './app.component';
-import { AuthService, NotifyService, UserService, AuthGuard } from './services';
-import { NotifyComponent, ToolbarComponent } from './components';
-import { AppRoutingModule } from './app.routing';
 
 @NgModule({
   declarations: [

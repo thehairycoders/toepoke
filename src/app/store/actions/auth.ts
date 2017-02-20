@@ -1,7 +1,7 @@
+import { IAuthCredentials } from '../../models';
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { FirebaseAuthState } from 'angularfire2';
-import { IAuthCredentials } from '../../models';
 
 @Injectable()
 export class AuthActions {

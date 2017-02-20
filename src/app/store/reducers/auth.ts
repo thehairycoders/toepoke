@@ -1,8 +1,7 @@
+import { LoginStatus } from '../../models';
+import { AuthActions } from './../actions';
 import { Action } from '@ngrx/store';
 import { FirebaseAuthState } from 'angularfire2';
-
-import { IAuthCredentials, LoginStatus } from '../../models';
-import { AuthActions } from './../actions';
 
 export interface AuthState {
     status: LoginStatus;

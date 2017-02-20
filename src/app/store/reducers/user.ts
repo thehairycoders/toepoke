@@ -1,8 +1,8 @@
-import { Action } from '@ngrx/store';
-import { FirebaseAuthState, FirebaseListObservable } from 'angularfire2';
-
 import { IUser, UserStatus } from '../../models';
 import { UserActions } from './../actions';
+import { Action } from '@ngrx/store';
+import { FirebaseListObservable } from 'angularfire2';
+
 
 export interface UserState {
     users: FirebaseListObservable<IUser>;

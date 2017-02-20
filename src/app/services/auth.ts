@@ -1,11 +1,11 @@
+import 'rxjs/add/observable/fromPromise';
+import { IAuthCredentials } from '../models';
+import * as RootStore from '../store';
+import { AuthActions } from '../store/actions';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
-
-import { IAuthCredentials } from '../models';
-import { AuthActions } from '../store/actions';
-import * as RootStore from '../store';
 
 @Injectable()
 export class AuthService {

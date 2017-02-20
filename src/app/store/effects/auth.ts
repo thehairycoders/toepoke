@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Effect, Actions, toPayload } from '@ngrx/effects';
-import { AuthService } from '../../services';
-import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
-
+import { AuthService } from '../../services';
 import { AuthActions } from '../actions';
-import { IAuthCredentials } from '../../models';
+import { Injectable } from '@angular/core';
+import { Actions, Effect, toPayload } from '@ngrx/effects';
+import { Observable } from 'rxjs/Observable';
+
 
 @Injectable()
 export class AuthEffects {

@@ -1,8 +1,8 @@
+import * as fromRoot from '../../store';
 import { Component, OnInit } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from '../../store';
 
 @Component({
   selector: 'app-notify',
