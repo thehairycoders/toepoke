@@ -7,15 +7,15 @@ const appRoutes: Routes = [
     {
         path: '',
         canActivate: [AuthGuard],
-        loadChildren: 'app/features/home/home.module#HomeModule',
+        loadChildren: './features/home/home.module#HomeModule',
     },  
     {
         path: '',
-        loadChildren: 'app/features/auth/auth.module#AuthModule',
+        loadChildren: './features/auth/auth.module#AuthModule',
     },
     {
         path: '',
-        loadChildren: 'app/features/utils/utils.module#UtilsModule',
+        loadChildren: './features/utils/utils.module#UtilsModule',
     },
     { path: '**', redirectTo: '/page-not-found', pathMatch: 'full' }
 ];
