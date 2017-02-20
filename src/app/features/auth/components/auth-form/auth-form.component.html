@@ -1,0 +1,23 @@
+<div fxLayout="row" fxLayoutAlign="center">
+    <md-card fxFlex="500px">
+        <md-card-title>{{formTitle}}</md-card-title>
+        <md-card-content>
+            <form novalidate [formGroup]="form" fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="16px" (keyup.enter)="submit()">
+                <md-input-container>
+                    <input mdInput placeholder="Email" formControlName="email">
+                    <md-hint *ngIf="form.controls.email.invalid && formSubmitted" class="error">
+                        <span [hidden]="!form.controls.email.errors.required">email address is required</span>
+                        <span [hidden]="!form.controls.email.errors.simpleEmailRule">enter a valid email address</span>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput placeholder="Password" type="password" formControlName="password">
+                    <md-hint [ngClass]="{ error: form.controls.password.invalid && formSubmitted }">at least 6 characters</md-hint>
+                </md-input-container>
+            </form>
+        </md-card-content>
+        <md-card-actions class="coloured-buttons">
+            <button md-raised-button color="primary" (click)="submit()">GO</button>
+        </md-card-actions>
+    </md-card>
+</div>

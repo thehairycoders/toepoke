@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="space-around stretch" class="full-screen">
+  <div class="auth-form">
+    <app-auth-form formTitle="Register" (formSubmitEvent)="register($event)"></app-auth-form>
+    <div fxLayout="column" fxLayoutAlign="space-between">
+      <a md-button routerLink="../login" color="primary">Already have an account?</a>
+    </div>
+  </div>
+</div>
+<md-progress-spinner *ngIf="loading" mode="indeterminate" class="loading"></md-progress-spinner>

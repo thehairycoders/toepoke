@@ -1,0 +1,4 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <app-welcome-form (formSubmitEvent)="initialiseUser($event)"></app-welcome-form>
+</div>
+<md-progress-spinner *ngIf="loading" mode="indeterminate" class="loading"></md-progress-spinner>
