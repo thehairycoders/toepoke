@@ -1,4 +1,4 @@
 export interface IUser {
-    name: string,
-    registeredDate?: string
+    name: string;
+    registeredDate?: string;
 }

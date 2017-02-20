@@ -1,20 +1,18 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
   @Input() loggedIn: boolean;
   @Output() logoutEvent: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
-  ngOnInit() { }
-
-  logout():void {
+  logout(): void {
 
     this.logoutEvent.next();
 

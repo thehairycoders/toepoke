@@ -13,7 +13,7 @@ import { LoginStatus } from './models';
 })
 export class AppComponent implements OnInit {
 
-  loggedIn: boolean = false;
+  loggedIn = false;
 
   constructor(
     private store: Store<RootStore.AppState>,

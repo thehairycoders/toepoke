@@ -7,7 +7,6 @@ import { AuthActions } from '../../../store/actions';
 import * as RootStore from '../../../store';
 import { AuthState } from '../../../store/reducers/auth';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs';
 import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 
 @Component({
@@ -17,7 +16,7 @@ import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 })
 export class LoginComponent extends StoreDrivenComponent implements OnInit {
 
-  loading: boolean = false;
+  loading = false;
   targetIfAuthorised: string;
 
   constructor(
@@ -45,7 +44,9 @@ export class LoginComponent extends StoreDrivenComponent implements OnInit {
 
   private handleAuthState(state: AuthState) {
     this.toggleLoader(state.status);
-    if (this.isUserLoggedIn(state)) this.redirectToAuthorisedTarget();
+    if (this.isUserLoggedIn(state)) {
+      this.redirectToAuthorisedTarget();
+    }
   }
 
   private setTargetRouteIfAuthorised() {

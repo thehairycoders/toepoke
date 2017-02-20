@@ -13,7 +13,7 @@ import { IAuthCredentials } from '../../../../models/auth-credentials';
 export class AuthFormComponent implements OnInit {
 
     form: FormGroup;
-    formSubmitted: boolean = false;
+    formSubmitted = false;
 
     @Input() formTitle: string;
     @Output() formSubmitEvent: EventEmitter<IAuthCredentials> = new EventEmitter<IAuthCredentials>();
@@ -33,7 +33,9 @@ export class AuthFormComponent implements OnInit {
 
         this.formSubmitted = true;
 
-        if (this.form.valid) this.formSubmitEvent.next(this.form.value);
+        if (this.form.valid) { 
+            this.formSubmitEvent.next(this.form.value);
+        }
 
     }
 

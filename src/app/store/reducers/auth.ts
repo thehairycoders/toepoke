@@ -5,9 +5,9 @@ import { IAuthCredentials, LoginStatus } from '../../models';
 import { AuthActions } from './../actions';
 
 export interface AuthState {
-    status: LoginStatus,
-    authState: FirebaseAuthState,
-    newlyRegistered: boolean
+    status: LoginStatus;
+    authState: FirebaseAuthState;
+    newlyRegistered: boolean;
 }
 
 const initialState: AuthState = {
@@ -30,11 +30,6 @@ export default function (state = initialState, action: Action): AuthState {
                 status: LoginStatus.loginFailed
             });
 
-        // case AuthActions.LOGIN_SUCCESS:
-        //     return Object.assign({}, state, {
-        //         status: LoginStatus.loggedIn
-        //     });
-
         case AuthActions.USER_AUTHENTICATED:
             return Object.assign({}, state, {
                 status: LoginStatus.loggedIn,
@@ -52,11 +47,6 @@ export default function (state = initialState, action: Action): AuthState {
                 status: LoginStatus.loggingOut,
             });
 
-        // case AuthActions.LOGOUT_SUCCESS:
-        //     return Object.assign({}, state, {
-        //         status: LoginStatus.loggedOut,
-        //     });
-
         case AuthActions.REGISTER_RECEIVED:
             return Object.assign({}, state, {
                 status: LoginStatus.registering
@@ -66,11 +56,6 @@ export default function (state = initialState, action: Action): AuthState {
             return Object.assign({}, state, {
                 status: LoginStatus.registerFailed
             });
-
-        // case AuthActions.REGISTER_SUCCESS:
-        //     return Object.assign({}, state, {
-        //         status: LoginStatus.loggedIn
-        //     });
 
         default:
             return Object.assign({}, state);

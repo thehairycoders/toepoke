@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FirebaseListObservable } from 'angularfire2';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 import { UserActions } from '../../../store/actions';
 import * as RootStore from '../../../store';
 import { IUser } from '../../../models';
 import { StoreDrivenComponent } from '../../../shared/store-driven.component';
-import { Router } from '@angular/router';
 import { UserState } from '../../../store/reducers/user';
 
 @Component({

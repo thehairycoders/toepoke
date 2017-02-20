@@ -13,12 +13,6 @@ import { IAuthCredentials } from '../../models';
 @Injectable()
 export class AuthEffects {
 
-    constructor(
-        private actions$: Actions,
-        private authActions: AuthActions,
-        private authService: AuthService
-    ) { }
-
     @Effect() login$ = this.actions$
         .ofType(AuthActions.LOGIN_RECEIVED)
         .map(toPayload)
@@ -41,5 +35,11 @@ export class AuthEffects {
                 .switchMap(() => Observable.of(this.authActions.registerSuccess()))
                 .catch(error => Observable.of(this.authActions.registerFailure(error.message)))
         );
+
+    constructor(
+        private actions$: Actions,
+        private authActions: AuthActions,
+        private authService: AuthService
+    ) { }
 
 }

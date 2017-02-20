@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-//import { Observable, Subscription } from 'rxjs';
 import { Router, NavigationStart } from '@angular/router';
 
 import { UserActions } from '../../../store/actions';
@@ -16,7 +15,7 @@ import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 })
 export class WelcomeComponent extends StoreDrivenComponent implements OnInit {
 
-  loading: boolean = false;
+  loading = false;
 
   constructor(
     private store: Store<RootStore.AppState>,

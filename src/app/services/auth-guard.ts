@@ -20,13 +20,12 @@ export class AuthGuard implements CanActivate {
     return this.store.select(store => store.authState)
       .map(authState => {
 
-        if(this.authenticated(authState.status)) {
-            return true;
+        if (this.authenticated(authState.status)) {
+          return true;
+        } else {
+          this.redirectToLogin(state.url);
+          return false;
         }
-        else {
-            this.redirectToLogin(state.url);
-            return false;
-        }        
 
       })
       .catch(error => {
@@ -42,7 +41,7 @@ export class AuthGuard implements CanActivate {
 
   authenticated(loginStatus: LoginStatus) {
     return loginStatus === LoginStatus.loggedIn;
-    
+
   }
 
 }

@@ -6,7 +6,6 @@ import { IAuthCredentials, LoginStatus } from '../../../models';
 import { AuthActions } from '../../../store/actions';
 import * as RootStore from '../../../store';
 import { AuthState } from '../../../store/reducers/auth';
-import { Subscription } from 'rxjs';
 import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 
 @Component({
@@ -16,7 +15,7 @@ import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 })
 export class RegisterComponent extends StoreDrivenComponent implements OnInit {
 
-  loading: boolean = false;
+  loading = false;
 
   constructor(
     private store: Store<RootStore.AppState>,

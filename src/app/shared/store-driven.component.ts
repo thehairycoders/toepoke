@@ -1,5 +1,5 @@
 import { OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationStart } from '@angular/router';
 
 export class StoreDrivenComponent implements OnInit, OnDestroy {
@@ -19,7 +19,9 @@ export class StoreDrivenComponent implements OnInit, OnDestroy {
 
   private changeStoreSubscrptionIfNavigating() {
     this.routerSubscription = this.superRouter.events.subscribe(event => {
-      if (event instanceof NavigationStart) this.unsubscribeFromStore();
+      if (event instanceof NavigationStart) { 
+        this.unsubscribeFromStore();
+      }
     });
   }
 

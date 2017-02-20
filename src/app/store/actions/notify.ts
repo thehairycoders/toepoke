@@ -5,6 +5,6 @@ import { Action } from '@ngrx/store';
 export class NotifyActions {
 
   static SHOW_MESSAGE = 'SHOW_MESSAGE';
-  static REMOVE_MESSAGE = "REMOVE_MESSAGE";
+  static REMOVE_MESSAGE = 'REMOVE_MESSAGE';
 
 }

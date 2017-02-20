@@ -14,7 +14,7 @@ import { IUser } from '../../../../models';
 export class WelcomeFormComponent implements OnInit {
 
     form: FormGroup;
-    formSubmitted: boolean = false;
+    formSubmitted = false;
 
     @Output() formSubmitEvent: EventEmitter<IUser> = new EventEmitter<IUser>();
 
@@ -36,7 +36,9 @@ export class WelcomeFormComponent implements OnInit {
         
         this.formSubmitted = true;
 
-        if (this.form.valid) this.formSubmitEvent.next(this.form.value);
+        if (this.form.valid) { 
+            this.formSubmitEvent.next(this.form.value);
+        }
 
     }
 

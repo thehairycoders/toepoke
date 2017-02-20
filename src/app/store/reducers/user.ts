@@ -5,8 +5,8 @@ import { IUser, UserStatus } from '../../models';
 import { UserActions } from './../actions';
 
 export interface UserState {
-    users: FirebaseListObservable<IUser>,
-    status: UserStatus
+    users: FirebaseListObservable<IUser>;
+    status: UserStatus;
 }
 
 const initialState: UserState = {
@@ -52,7 +52,7 @@ export default function (state = initialState, action: Action): UserState {
         case UserActions.SET_STATUS_IDLE:
             return Object.assign({}, state, {
                 status: UserStatus.idle
-            });    
+            });
 
         default:
             return Object.assign({}, state);

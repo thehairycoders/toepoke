@@ -12,9 +12,9 @@ import * as fromNotify from './reducers/notify';
 import * as fromUser from './reducers/user';
 
 export interface AppState {
-  authState: fromAuth.AuthState,
-  notifyState: fromNotify.NotifyState,
-  userState: fromUser.UserState
+  authState: fromAuth.AuthState;
+  notifyState: fromNotify.NotifyState;
+  userState: fromUser.UserState;
 };
 
 export const actions = [
@@ -24,7 +24,7 @@ export const actions = [
 ];
 
 export const composeStore = compose(
-  storeLogger(), 
+  storeLogger(),
   localStorageSync(['authState']),
   combineReducers)
   ({

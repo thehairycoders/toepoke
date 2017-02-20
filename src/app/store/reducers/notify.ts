@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { NotifyActions } from './../actions';
 
 export interface NotifyState {
-    message: string
+    message: string;
 }
 
 const initialState: NotifyState = {
