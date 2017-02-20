@@ -39,7 +39,6 @@ export class AuthGuard implements CanActivate {
 
   authenticated(loginStatus: LoginStatus) {
     return loginStatus === LoginStatus.loggedIn;
-
   }
 
 }
