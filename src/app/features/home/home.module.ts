@@ -1,5 +1,4 @@
 import { WelcomeFormComponent } from './components';
-import { HomeRoutingModule } from './home.routing';
 import { UsersComponent } from './users/users.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CommonModule } from '@angular/common';
@@ -22,8 +21,7 @@ import { MaterialModule } from '@angular/material';
     ReactiveFormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    FlexLayoutModule,
-    HomeRoutingModule    
+    FlexLayoutModule
   ]
 })
 export class HomeModule { }

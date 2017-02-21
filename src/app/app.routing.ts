@@ -1,3 +1,4 @@
+import { HomeRoutes } from './features/home/home.routing';
 import { AuthGuard } from './services/auth-guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,7 +8,7 @@ const appRoutes: Routes = [
     {
         path: '',
         canActivate: [AuthGuard],
-        loadChildren: './features/home/home.module#HomeModule',
+        children: [...HomeRoutes]
     },  
     {
         path: '',
