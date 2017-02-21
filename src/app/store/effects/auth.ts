@@ -8,7 +8,6 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 
-
 @Injectable()
 export class AuthEffects {
 
@@ -34,6 +33,21 @@ export class AuthEffects {
                 .switchMap(() => Observable.of(this.authActions.registerSuccess()))
                 .catch(error => Observable.of(this.authActions.registerFailure(error.message)))
         );
+
+    @Effect() passwordReset$ = this.actions$
+        .ofType(AuthActions.PASSWORD_RESET_RECEIVED)
+        .map(toPayload)
+        .switchMap(emailAddress =>
+            this.authService.resetPassword(emailAddress)
+                .switchMap(() => Observable.of(this.authActions.resetPasswordSuccess()))
+                .catch(error => Observable.of(this.authActions.resetPasswordFailure(error.message)))
+        );
+
+    @Effect() setAuthStateToIdle$ = this.actions$
+        .ofType(
+        AuthActions.PASSWORD_RESET_SUCCESS,
+        AuthActions.PASSWORD_RESET_FAILURE)
+        .switchMap(() => Observable.of({ type: AuthActions.SET_STATUS_IDLE }));
 
     constructor(
         private actions$: Actions,

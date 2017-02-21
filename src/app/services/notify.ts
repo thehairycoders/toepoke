@@ -15,6 +15,10 @@ export class NotifyService {
         return message ? message : 'Failed to register';
       case AuthActions.REGISTER_SUCCESS:
         return message ? message : 'Success! You registered';
+      case AuthActions.PASSWORD_RESET_FAILURE:
+        return message ? message : 'Failed to send password reset email';
+      case AuthActions.PASSWORD_RESET_SUCCESS:
+        return message ? message : 'Success! Please check your email';
     }
 
   }

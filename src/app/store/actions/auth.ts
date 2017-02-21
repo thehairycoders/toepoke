@@ -12,10 +12,14 @@ export class AuthActions {
   static REGISTER_RECEIVED = 'REGISTER_RECEIVED';
   static REGISTER_SUCCESS = 'REGISTER_SUCCESS';
   static REGISTER_FAILURE = 'REGISTER_FAILURE';
+  static PASSWORD_RESET_RECEIVED = 'PASSWORD_RESET_RECEIVED';
+  static PASSWORD_RESET_SUCCESS = 'PASSWORD_RESET_SUCCESS';
+  static PASSWORD_RESET_FAILURE = 'PASSWORD_RESET_FAILURE';
   static LOGOUT_RECEIVED = 'LOGOUT_RECEIVED';
   static LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
   static USER_AUTHENTICATED = 'USER_AUTHENTICATED';
   static USER_NOT_AUTHENTICATED = 'USER_NOT_AUTHENTICATED';
+  static SET_STATUS_IDLE = 'SET_STATUS_IDLE';
 
   loginUser(authCredentials: IAuthCredentials): Action {
     return {
@@ -57,6 +61,26 @@ export class AuthActions {
     };
   }
 
+  resetPassword(emailAddress: string): Action {
+    return {
+      type: AuthActions.PASSWORD_RESET_RECEIVED,
+      payload: emailAddress
+    };
+  }
+
+  resetPasswordSuccess(): Action {
+    return {
+      type: AuthActions.PASSWORD_RESET_SUCCESS
+    };
+  }
+
+  resetPasswordFailure(error: string): Action {
+    return {
+      type: AuthActions.PASSWORD_RESET_FAILURE,
+      payload: error
+    };
+  }
+
   logOutUser(): Action {
     return {
       type: AuthActions.LOGOUT_RECEIVED
@@ -79,6 +103,12 @@ export class AuthActions {
   userNotAuthenticated(): Action {
     return {
       type: AuthActions.USER_NOT_AUTHENTICATED
+    };
+  }
+
+  setUserStatusIdle(): Action {
+    return {
+      type: AuthActions.SET_STATUS_IDLE
     };
   }
 

@@ -5,7 +5,7 @@ describe('Auth reducer', () => {
     it('should return provided state when no valid actions have been made', () => {
         
         const defaultState = {
-            status: LoginStatus.unknown,
+            status: LoginStatus.idle,
             authState: null,
             newlyRegistered: false
         };
