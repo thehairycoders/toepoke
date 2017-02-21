@@ -13,7 +13,12 @@ import { Observable } from 'rxjs/Observable';
 export class NotifyEffects {
 
     @Effect() showMessage$ = this.actions$
-        .ofType(AuthActions.LOGIN_FAILURE, AuthActions.REGISTER_FAILURE, AuthActions.REGISTER_SUCCESS)
+        .ofType(
+            AuthActions.LOGIN_FAILURE, 
+            AuthActions.REGISTER_FAILURE, 
+            AuthActions.REGISTER_SUCCESS, 
+            AuthActions.PASSWORD_RESET_FAILURE,
+            AuthActions.PASSWORD_RESET_SUCCESS)
         .switchMap(action =>
             Observable.of(
                 { type: NotifyActions.SHOW_MESSAGE, payload: this.notifyService.getMessageForAction(action.type, action.payload) }

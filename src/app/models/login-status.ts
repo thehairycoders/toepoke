@@ -3,8 +3,11 @@ export enum LoginStatus {
     loggedIn,
     loggingOut,
     loggedOut,
-    unknown,
+    idle,
     registering,
     registerFailed,
-    loginFailed
+    loginFailed,
+    passwordResetSuccess,
+    passwordResetInProgress,
+    passwordResetFailed
 }
