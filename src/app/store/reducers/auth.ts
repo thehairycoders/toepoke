@@ -10,7 +10,7 @@ export interface AuthState {
 }
 
 const initialState: AuthState = {
-    status: LoginStatus.unknown,
+    status: LoginStatus.idle,
     authState: null,
     newlyRegistered: false
 };
@@ -54,6 +54,26 @@ export default function (state = initialState, action: Action): AuthState {
         case AuthActions.REGISTER_FAILURE:
             return Object.assign({}, state, {
                 status: LoginStatus.registerFailed
+            });
+
+        case AuthActions.PASSWORD_RESET_RECEIVED:
+            return Object.assign({}, state, {
+                status: LoginStatus.passwordResetInProgress
+            });
+
+        case AuthActions.PASSWORD_RESET_FAILURE:
+            return Object.assign({}, state, {
+                status: LoginStatus.passwordResetFailed
+            });
+
+        case AuthActions.PASSWORD_RESET_SUCCESS:
+            return Object.assign({}, state, {
+                status: LoginStatus.passwordResetSuccess
+            });
+
+        case AuthActions.SET_STATUS_IDLE:
+            return Object.assign({}, state, {
+                status: LoginStatus.idle
             });
 
         default:

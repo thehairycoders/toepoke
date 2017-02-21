@@ -5,6 +5,7 @@ import { AuthActions } from '../store/actions';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
