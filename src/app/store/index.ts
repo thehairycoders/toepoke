@@ -23,7 +23,7 @@ export const actions = [
 ];
 
 export const composeStore = compose(
- // storeLogger(),
+  storeLogger(),
   localStorageSync(['authState']),
   combineReducers)
   ({

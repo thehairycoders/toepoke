@@ -1,7 +1,7 @@
 {
   "project": {
     "version": "1.0.0-beta.30",
-    "name": "angular2-ngrx-firebase-auth"
+    "name": "toepoke"
   },
   "apps": [
     {
@@ -18,6 +18,7 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
+        // "theme.scss",
         "styles.css"
       ],
       "scripts": [],

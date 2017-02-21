@@ -1,5 +1,5 @@
 @import '~normalize.css/normalize.css';
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+@import '~@angular/material/core/theming/prebuilt/pink-bluegrey.css';
 
 html, body, .full-page {
   width: 100%;

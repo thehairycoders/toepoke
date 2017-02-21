@@ -1,17 +1,36 @@
-<form novalidate [formGroup]="form" (ngSubmit)="submit()">
+<form novalidate [formGroup]="form" (ngSubmit)="submit($event)">
     <div fxLayout="row" fxLayoutAlign="center">
         <md-card fxFlex="500px">
-            <md-card-title>Who are you?</md-card-title>
+            <md-card-title>Personal Information</md-card-title>
             <md-card-content fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="16px">
+                <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="5px">
+                    <md-input-container fxFlex="50%">
+                        <input mdInput placeholder="first name" formControlName="firstName">
+                        <md-hint *ngIf="form.controls.firstName.invalid && formSubmitted" class="error">
+                            <span [hidden]="!form.controls.firstName.errors.required">first name is required</span>
+                        </md-hint>
+                    </md-input-container>
+                    <md-input-container fxFlex="50%">
+                        <input mdInput placeholder="surname" formControlName="surname">
+                        <md-hint *ngIf="form.controls.surname.invalid && formSubmitted" class="error">
+                            <span [hidden]="!form.controls.surname.errors.required">surname is required</span>
+                        </md-hint>
+                    </md-input-container>
+                </div>
                 <md-input-container>
-                    <input mdInput placeholder="Name" formControlName="name">
-                    <md-hint *ngIf="form.controls.name.invalid && formSubmitted" class="error">
-                        <span [hidden]="!form.controls.name.errors.required">name is required</span>
+                    <input mdInput placeholder="location" formControlName="location" ng2-google-place-autocomplete (setAddress)="setLocation($event)"
+                    (focus)="disableSubmitOnEnter()" (focusout)="enableSubmitOnEnter()" [options]="googlePlacesLookupOptions" />
+                    <md-hint>helps to find nearby games (optional)</md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput type="number" placeholder="mobile" formControlName="mobileNumber">
+                    <md-hint>
+                        <span class="error" [hidden]="!(form.controls.mobileNumber.invalid && formSubmitted)">enter a valid mobile number</span>
+                        <span [hidden]="form.controls.mobileNumber.invalid && formSubmitted">helps everyone keep in touch (optional)</span>
                     </md-hint>
-                </md-input-container>             
+                </md-input-container>
             </md-card-content>
             <md-card-actions class="coloured-buttons">
-                <button type="button" md-raised-button color="primary" (click)="skipInitialisation()">SKIP</button>
                 <button type="submit" md-raised-button color="primary">SAVE</button>
             </md-card-actions>
         </md-card>

@@ -1,4 +1,8 @@
 export interface IUser {
-    name: string;
+    firstName: string;
+    surname: string;
+    location?: string;
+    coordinates?: string;
+    mobileNumber?: string;
     registeredDate?: string;
 }

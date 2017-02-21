@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
-
+import { GooglePlaceModule } from 'ng2-google-place-autocomplete';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { MaterialModule } from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    GooglePlaceModule,
     MaterialModule.forRoot(),
     FlexLayoutModule
   ]
