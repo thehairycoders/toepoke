@@ -57,7 +57,7 @@ export class WelcomeComponent extends StoreDrivenComponent implements OnInit {
 
   private redirectOnSuccess(userStatus: UserStatus): void {
     if (userStatus === UserStatus.updateSuccess) {
-      this.router.navigate(['../users']);
+      this.router.navigate(['../dashboard']);
     }
   }
 

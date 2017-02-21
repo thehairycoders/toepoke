@@ -30,13 +30,41 @@ export class UserEffects {
                 .catch(error => Observable.of({ type: UserActions.GET_USERS_FAILURE, payload: 'You must be logged in' }))
         );
 
+    @Effect() getUser$ = this.actions$
+        .ofType(UserActions.GET_USER_RECEIVED)
+        .switchMap(() =>
+            this.authService.angularFire.auth
+                .switchMap(authState => {
+
+                    if (authState) {
+                        return this.userService.getUser(authState.uid)
+                            .switchMap((user) => Observable.of(this.userActions.getUserSuccess(user)))
+                            .catch(error => Observable.of(this.userActions.getUserFailure(error.message)));
+                    } else {
+                        return Observable.of({ type: UserActions.GET_USER_FAILURE, payload: 'You must be logged in' });
+                    }
+
+                })
+                .catch(error => Observable.of({ type: UserActions.GET_USER_FAILURE, payload: 'You must be logged in' }))
+        );
+
     @Effect() initialiseUser$ = this.actions$
         .ofType(UserActions.INITIALISE_USER_RECEIVED)
         .map(toPayload)
         .switchMap(payload =>
-            Observable.fromPromise(<Promise<void>>this.userService.initialiseUser(payload.data))
-                .switchMap(() => Observable.of({ type: UserActions.INITIALISE_USER_SUCCESS }))
-                .catch(error => Observable.of({ type: UserActions.INITIALISE_USER_FAILURE }))
+            this.authService.angularFire.auth
+                .switchMap(authState => {
+
+                    if (authState) {
+                        return Observable.fromPromise(<Promise<void>>this.userService.initialiseUser(authState.uid, payload.data))
+                            .switchMap(() => Observable.of({ type: UserActions.INITIALISE_USER_SUCCESS }))
+                            .catch(error => Observable.of({ type: UserActions.INITIALISE_USER_FAILURE }));
+                    } else {
+                        return Observable.of({ type: UserActions.INITIALISE_USER_FAILURE, payload: 'You must be logged in' });
+                    }
+
+                })
+                .catch(error => Observable.of({ type: UserActions.INITIALISE_USER_FAILURE, payload: 'You must be logged in' }))
         );
 
     @Effect() setUserStateToIdle$ = this.actions$

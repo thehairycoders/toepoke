@@ -6,6 +6,7 @@ import { AuthState } from '../../../store/reducers/auth';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -49,7 +50,7 @@ export class LoginComponent extends StoreDrivenComponent implements OnInit {
   }
 
   private setTargetRouteIfAuthorised() {
-    this.route.queryParams.subscribe(params => this.targetIfAuthorised = params['redirect_url'] || 'users');
+    this.route.queryParams.subscribe(params => this.targetIfAuthorised = params['redirect_url'] || environment.homeRoute);
   }
 
   private isUserLoggedIn(state: AuthState): boolean {

@@ -1,6 +1,6 @@
 import { IUser } from '../models';
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -14,9 +14,11 @@ export class UserService {
     return this.angularFire.database.list(`/userReadable`);
   }
 
-  initialiseUser(userData: IUser): firebase.Promise<void> {
+  getUser(key: string): FirebaseObjectObservable<any> {
+    return this.angularFire.database.object(`/userWriteable/${key}`);
+  }
 
-    const key = this.rootRef.child('/userWriteable').push().key;
+  initialiseUser(key: string, userData: IUser): firebase.Promise<void> {
 
     userData.registeredDate = new Date().toISOString();
 

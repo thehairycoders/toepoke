@@ -6,6 +6,7 @@ describe('User reducer', () => {
         
         const defaultState = {
             users: null,
+            user: null,
             status: null
         };
 
@@ -48,6 +49,37 @@ describe('User reducer', () => {
         const actual = userReducer(null, { type: 'GET_USERS_FAILURE' });
         
         expect(actual.status).toEqual(UserStatus.getUsersFailure);
+    });
+
+  it('should have a status of get users in progress when receiving GET_USER_RECEIVED action', () => {
+        
+        const actual = userReducer(null, { type: 'GET_USER_RECEIVED' });
+        
+        expect(actual.status).toEqual(UserStatus.getUserInProgress);
+    });
+
+    it('should have a status of get users success when receiving GET_USER_SUCCESS action', () => {
+        
+        const actual = userReducer(null, { type: 'GET_USER_SUCCESS' });
+        
+        expect(actual.status).toEqual(UserStatus.getUserSuccess);
+    });
+
+    it('should set users when receiving GET_USER_SUCCESS action', () => {
+        
+        const user = { '1': 'user1' };
+
+        const actual = userReducer(null, { type: 'GET_USER_SUCCESS', payload: user });
+        
+        expect(actual.user).toEqual(user);
+
+    });
+
+    it('should have a status of get users failure when receiving GET_USER_FAILURE action', () => {
+        
+        const actual = userReducer(null, { type: 'GET_USER_FAILURE' });
+        
+        expect(actual.status).toEqual(UserStatus.getUserFailure);
     });
 
 

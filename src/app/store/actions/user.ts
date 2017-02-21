@@ -1,7 +1,7 @@
 import { IUser } from '../../models';
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { FirebaseListObservable } from 'angularfire2';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Injectable()
 export class UserActions {
@@ -12,6 +12,9 @@ export class UserActions {
   static GET_USERS_RECEIVED = 'GET_USERS_RECEIVED';
   static GET_USERS_FAILURE = 'GET_USERS_FAILURE';
   static GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
+  static GET_USER_RECEIVED = 'GET_USER_RECEIVED';
+  static GET_USER_FAILURE = 'GET_USER_FAILURE';
+  static GET_USER_SUCCESS = 'GET_USER_SUCCESS';
   static SET_STATUS_IDLE = 'SET_STATUS_IDLE';
 
   initialiseUser(user: IUser): Action {
@@ -51,6 +54,26 @@ export class UserActions {
     return {
       type: UserActions.GET_USERS_SUCCESS,
       payload: users
+    };
+  }
+
+  getUser(): Action {
+    return {
+      type: UserActions.GET_USER_RECEIVED
+    };
+  }
+
+  getUserFailure(error: string): Action {
+    return {
+      type: UserActions.GET_USER_FAILURE,
+      payload: error
+    };
+  }
+
+  getUserSuccess(user: FirebaseObjectObservable<IUser>): Action {
+    return {
+      type: UserActions.GET_USER_SUCCESS,
+      payload: user
     };
   }
 

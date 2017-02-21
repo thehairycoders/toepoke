@@ -1,5 +1,5 @@
 import { WelcomeFormComponent } from './components';
-import { UsersComponent } from './users/users.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -13,7 +13,7 @@ import { GooglePlaceModule } from 'ng2-google-place-autocomplete';
   declarations: [
     WelcomeFormComponent,
     WelcomeComponent,
-    UsersComponent
+    DashboardComponent
   ],
   imports: [
     CommonModule,

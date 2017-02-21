@@ -6,17 +6,17 @@ import { UserState } from '../../../store/reducers/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { FirebaseListObservable } from 'angularfire2';
+import { FirebaseObjectObservable } from 'angularfire2';
 
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class UsersComponent extends StoreDrivenComponent implements OnInit {
+export class DashboardComponent extends StoreDrivenComponent implements OnInit {
 
-  users: FirebaseListObservable<IUser>;
+  user: FirebaseObjectObservable<IUser>;
 
   constructor(
     private store: Store<RootStore.AppState>,
@@ -28,8 +28,7 @@ export class UsersComponent extends StoreDrivenComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     this.subscribeToStore();
-    this.store.dispatch(this.userActions.getUsers());
-
+    this.store.dispatch(this.userActions.getUser());
   }
 
     private subscribeToStore() {
@@ -37,7 +36,7 @@ export class UsersComponent extends StoreDrivenComponent implements OnInit {
   }
 
   private handleUserState(state: UserState) {
-    this.users = state.users;
+    this.user = state.user;
   }
 
 }
