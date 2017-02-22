@@ -1,11 +1,11 @@
 import { ISquad, SquadStatus } from '../../models';
 import { SquadActions } from './../actions';
 import { Action } from '@ngrx/store';
-import { FirebaseListObservable } from 'angularfire2';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 
 export interface SquadState {
-    playerSquads: FirebaseListObservable<ISquad>;
+    playerSquads: Array<FirebaseObjectObservable<ISquad>>;
     managerSquads: FirebaseListObservable<ISquad>;
     playerSquadStatus: SquadStatus;
     managerSquadStatus: SquadStatus;
@@ -21,6 +21,21 @@ const initialState: SquadState = {
 export default function (state = initialState, action: Action): SquadState {
 
     switch (action.type) {
+
+        case SquadActions.CREATE_SQUAD_RECEIVED:
+            return Object.assign({}, state, {
+                managerSquadStatus: SquadStatus.updateInProgress
+            });
+
+        case SquadActions.CREATE_SQUAD_FAILURE:
+            return Object.assign({}, state, {
+                managerSquadStatus: SquadStatus.updateFailure
+            });
+
+        case SquadActions.CREATE_SQUAD_SUCCESS:
+            return Object.assign({}, state, {
+                managerSquadStatus: SquadStatus.updateSuccess
+            });
 
         case SquadActions.GET_PLAYER_SQUADS_RECEIVED:
             return Object.assign({}, state, {

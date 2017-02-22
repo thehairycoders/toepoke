@@ -1,5 +1,5 @@
 <md-card class="full-height" [ngClass]="{ scaffolding: !squads }">
-    <md-card-title>{{title}}</md-card-title>
+    <md-card-title>Your Squads</md-card-title>
     <md-card-content>
         <md-list *ngIf="!squads || squads?.length > 0">
             <md-list-item *ngIf="!squads">
@@ -12,15 +12,18 @@
             </md-list-item>   
             <md-list-item *ngFor="let squad of squads">
                 <h3 md-line class="scaffolding__element">
-                    <span class="scaffolding__content">{{squad.name}}</span>
+                    <span class="scaffolding__content">{{(squad | async)?.name}}</span>
                 </h3>
                 <p md-line class="scaffolding__element">
-                    <span class="scaffolding__content">{{squad.location}}</span>
+                    <span class="scaffolding__content">{{(squad | async)?.location}}</span>
                 </p>
             </md-list-item>
         </md-list>
         <div *ngIf="squads && squads?.length === 0">
-            You aren't in any squads fool!
+            Looks like you aren't in any squads.  Why not <a routerLink="/squads/add">join</a> or <a routerLink="/squads/add">create</a> one?
         </div>
     </md-card-content>
+    <md-card-actions>
+        <a md-mini-fab routerLink='/squads/add' mdTooltip="new squad"><md-icon>add</md-icon></a>
+    </md-card-actions>
 </md-card>

@@ -11,6 +11,11 @@ const appRoutes: Routes = [
         children: [...HomeRoutes]
     },  
     {
+        path: 'squads',
+        canActivate: [AuthGuard],
+        loadChildren: './features/squads/squads.module#SquadsModule',
+    },
+    {
         path: '',
         loadChildren: './features/auth/auth.module#AuthModule',
     },

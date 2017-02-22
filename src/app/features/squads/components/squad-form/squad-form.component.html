@@ -1,0 +1,26 @@
+<form novalidate [formGroup]="form" (ngSubmit)="submit($event)">
+    <div fxLayout="row" fxLayoutAlign="center">
+        <md-card fxFlex="500px">
+            <md-card-title>{{formTitle}} Squad</md-card-title>
+            <md-card-content fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="16px">
+                <md-input-container>
+                    <input mdInput placeholder="name" formControlName="name">
+                    <md-hint *ngIf="form.controls.name.invalid && formSubmitted" class="error">
+                        <span [hidden]="!form.controls.name.errors.required">name is required</span>
+                    </md-hint>
+                </md-input-container>                  
+                <md-input-container>
+                    <input mdInput placeholder="location" formControlName="location" ng2-google-place-autocomplete (setAddress)="setLocation($event)"
+                    (focus)="disableSubmitOnEnter()" (focusout)="enableSubmitOnEnter()" [options]="googlePlacesLookupOptions" />
+                    <md-hint>
+                        <span class="error" *ngIf="form.controls.name.invalid && formSubmitted">name is required</span>
+                        <span *ngIf="form.controls.name.valid || !formSubmitted">where do you normally play?</span>
+                    </md-hint>                    
+                </md-input-container>
+            </md-card-content>
+            <md-card-actions class="coloured-buttons">
+                <button type="submit" md-raised-button color="primary">SAVE</button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</form>

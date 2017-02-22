@@ -1,3 +1,5 @@
+import { IFirebaseKey } from './firebase-key';
+
 export interface IUser {
     firstName: string;
     surname: string;
@@ -5,4 +7,6 @@ export interface IUser {
     coordinates?: string;
     mobileNumber?: string;
     registeredDate?: string;
+    playerSquads: any;
+    managerSquads: any;
 }

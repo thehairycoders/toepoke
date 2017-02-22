@@ -18,7 +18,7 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 export class DashboardComponent extends StoreDrivenComponent implements OnInit {
 
   user: FirebaseObjectObservable<IUser>;
-  playerSquads: FirebaseListObservable<ISquad>;
+  playerSquads: Array<FirebaseObjectObservable<ISquad>>;
   managerSquads: FirebaseListObservable<ISquad>;
 
   constructor(
@@ -34,7 +34,7 @@ export class DashboardComponent extends StoreDrivenComponent implements OnInit {
     this.subscribeToStore();
     this.store.dispatch(this.userActions.getUser());
     this.store.dispatch(this.squadActions.getPlayerSquads());
-    this.store.dispatch(this.squadActions.getManagerSquads());
+   // this.store.dispatch(this.squadActions.getManagerSquads());
   }
 
     private subscribeToStore() {
@@ -51,7 +51,7 @@ export class DashboardComponent extends StoreDrivenComponent implements OnInit {
 
   private handleSquadState(state: SquadState) {
     this.playerSquads = state.playerSquads;
-    this.managerSquads = state.managerSquads;
+    //this.managerSquads = state.managerSquads;
   }
 
 }
