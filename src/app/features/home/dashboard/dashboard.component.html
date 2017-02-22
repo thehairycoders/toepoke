@@ -1,7 +1,5 @@
-<md-card>
-    <md-card-title>{{user?.firstName}} {{user?.surname}}</md-card-title>
-    <md-card-subtitle>Joined on {{user?.registeredDate | date}}</md-card-subtitle>
-    <md-card-content>
-        {{user?.location}}
-    </md-card-content>
-</md-card>
+<div fxLayout fxLayoutGap="10px" fxLayoutAlign="start stretch">
+    <app-user-details fxFlex="33%" [user]="user"></app-user-details>
+    <app-squads fxFlex="33%" title="Player Squads" [squads]="playerSquads"></app-squads>
+    <app-squads fxFlex="33%" title="Manager Squads" [squads]="managerSquads"></app-squads>
+</div>
