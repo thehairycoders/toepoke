@@ -1,0 +1,14 @@
+<md-card class="full-height" [ngClass]="{ scaffolding: !user }">
+    <md-card-title class="scaffolding__element">
+        <span class="scaffolding__placeholder">title</span>
+        <span class="scaffolding__content">{{user?.firstName}} {{user?.surname}}</span>
+    </md-card-title>
+    <md-card-subtitle class="scaffolding__element">
+        <span class="scaffolding__placeholder">date joined</span>
+        <span class="scaffolding__content">Joined on {{user?.registeredDate | date}}</span>
+    </md-card-subtitle>
+    <md-card-content class="scaffolding__element">
+        <span class="scaffolding__placeholder">location</span>
+        <span class="scaffolding__content">{{user?.location}}</span>
+    </md-card-content>
+</md-card>

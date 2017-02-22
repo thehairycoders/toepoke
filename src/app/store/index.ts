@@ -1,7 +1,9 @@
-import { AuthActions, NotifyActions, UserActions } from './actions';
-import { AuthEffects, NotifyEffects, UserEffects } from './effects';
+import { SquadStatus } from '../models/squad-status';
+import { AuthActions, NotifyActions, UserActions, SquadActions } from './actions';
+import { AuthEffects, NotifyEffects, UserEffects, SquadEffects } from './effects';
 import * as fromAuth from './reducers/auth';
 import * as fromNotify from './reducers/notify';
+import * as fromSquad from './reducers/squad';
 import * as fromUser from './reducers/user';
 import { NgModule } from '@angular/core';
 import { compose } from '@ngrx/core/compose';
@@ -14,12 +16,14 @@ export interface AppState {
   authState: fromAuth.AuthState;
   notifyState: fromNotify.NotifyState;
   userState: fromUser.UserState;
+  squadState: fromSquad.SquadState;
 };
 
 export const actions = [
   AuthActions,
   NotifyActions,
-  UserActions
+  UserActions,
+  SquadActions
 ];
 
 export const composeStore = compose(
@@ -29,7 +33,8 @@ export const composeStore = compose(
   ({
     authState: fromAuth.default,
     notifyState: fromNotify.default,
-    userState: fromUser.default
+    userState: fromUser.default,
+    squadState: fromSquad.default
   });
 
 export function reducer(state: any, action: any) {
@@ -41,7 +46,8 @@ export function reducer(state: any, action: any) {
     StoreModule.provideStore(reducer),
     EffectsModule.run(AuthEffects),
     EffectsModule.run(NotifyEffects),
-    EffectsModule.run(UserEffects)
+    EffectsModule.run(UserEffects),
+    EffectsModule.run(SquadEffects)
   ],
   declarations: [],
   exports: [],

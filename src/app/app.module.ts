@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { NotifyComponent, ToolbarComponent } from './components';
 import { HomeModule } from './features/home/home.module';
-import { AuthGuard, AuthService, NotifyService, UserService } from './services';
+import { AuthGuard, AuthService, NotifyService, UserService, SquadService } from './services';
 import { SharedStoreModule } from './store';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -37,7 +37,8 @@ import { AngularFireModule } from 'angularfire2';
     StoreModule,
     AuthService,
     NotifyService,
-    UserService
+    UserService,
+    SquadService
   ],
   bootstrap: [AppComponent]
 })
