@@ -26,11 +26,7 @@ export class WelcomeFormComponent implements OnInit {
             firstName: ['', Validators.required],
             surname: ['', Validators.required],
             location: [''],
-            mobileNumber: ['', Validators.compose([
-                UniversalValidators.isNumber(),
-                UniversalValidators.minLength(11),
-                UniversalValidators.maxLength(11),
-                UniversalValidators.noWhitespace()])]
+            mobileNumber: ['']
         });
 
     }
