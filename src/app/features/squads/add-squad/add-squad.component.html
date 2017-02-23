@@ -1,0 +1,6 @@
+<div fxLayout="row" fxLayoutAlign="space-around stretch" class="full-screen">
+  <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px">
+    <app-squad-form formTitle="Add" (formSubmitEvent)="addSquad($event)"></app-squad-form>    
+  </div>
+</div>
+<md-progress-spinner *ngIf="loading" mode="indeterminate" class="loading"></md-progress-spinner>
