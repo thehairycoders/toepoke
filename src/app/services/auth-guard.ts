@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     return this.store.select(store => store.authState)
       .map(authState => {
 
-        if (this.authenticated(authState.status)) {
+        if (this.authenticated(authState.loginStatus)) {
           return true;
         } else {
           this.redirectToLogin(state.url);

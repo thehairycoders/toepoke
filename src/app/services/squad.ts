@@ -1,4 +1,3 @@
-import { IFirebaseKey } from '../models/firebase-key';
 import { ISquad } from '../models';
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
@@ -12,7 +11,7 @@ export class SquadService {
 
   constructor(public angularFire: AngularFire) { }
 
-  getPlayerSquads(playerSquadIds: Array<IFirebaseKey> = []): Observable<Array<FirebaseObjectObservable<ISquad>>> {
+  getPlayerSquads(playerSquadIds: Array<any> = []): Observable<Array<FirebaseObjectObservable<ISquad>>> {
 
     let playerSquadsRefs: Array<FirebaseObjectObservable<ISquad>> = [];
 

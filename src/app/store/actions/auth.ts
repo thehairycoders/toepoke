@@ -19,7 +19,6 @@ export class AuthActions {
   static LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
   static USER_AUTHENTICATED = 'USER_AUTHENTICATED';
   static USER_NOT_AUTHENTICATED = 'USER_NOT_AUTHENTICATED';
-  static SET_STATUS_IDLE = 'SET_STATUS_IDLE';
 
   loginUser(authCredentials: IAuthCredentials): Action {
     return {
@@ -103,12 +102,6 @@ export class AuthActions {
   userNotAuthenticated(): Action {
     return {
       type: AuthActions.USER_NOT_AUTHENTICATED
-    };
-  }
-
-  setUserStatusIdle(): Action {
-    return {
-      type: AuthActions.SET_STATUS_IDLE
     };
   }
 

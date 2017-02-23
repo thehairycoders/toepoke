@@ -43,12 +43,6 @@ export class AuthEffects {
                 .catch(error => Observable.of(this.authActions.resetPasswordFailure(error.message)))
         );
 
-    @Effect() setAuthStateToIdle$ = this.actions$
-        .ofType(
-        AuthActions.PASSWORD_RESET_SUCCESS,
-        AuthActions.PASSWORD_RESET_FAILURE)
-        .switchMap(() => Observable.of({ type: AuthActions.SET_STATUS_IDLE }));
-
     constructor(
         private actions$: Actions,
         private authActions: AuthActions,

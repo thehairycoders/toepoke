@@ -1,3 +1,4 @@
+import { RegisterStatus } from '../../models/register-status';
 import { LoginStatus } from '../../models';
 import authReducer from './auth';
 describe('Auth reducer', () => {
@@ -5,9 +6,9 @@ describe('Auth reducer', () => {
     it('should return provided state when no valid actions have been made', () => {
         
         const defaultState = {
-            status: LoginStatus.idle,
+            loginStatus: LoginStatus.unknown,
+            registerStatus: RegisterStatus.unknown,
             authState: null,
-            newlyRegistered: false
         };
 
         const actual = authReducer(defaultState, { type: 'UNKNOWN_ACTION', payload: {} });
@@ -19,21 +20,21 @@ describe('Auth reducer', () => {
         
         const actual = authReducer(null, { type: 'LOGIN_RECEIVED' });
         
-        expect(actual.status).toEqual(LoginStatus.loggingIn);
+        expect(actual.loginStatus).toEqual(LoginStatus.loggingIn);
     });
 
     it('should have a status of login failed when receiving LOGIN_FAILURE action', () => {
         
         const actual = authReducer(null, { type: 'LOGIN_FAILURE' });
         
-        expect(actual.status).toEqual(LoginStatus.loginFailed);
+        expect(actual.loginStatus).toEqual(LoginStatus.loginFailed);
     });
 
     it('should have a status of logged in when receiving USER_AUTHENTICATED action', () => {
         
         const actual = authReducer(null, { type: 'USER_AUTHENTICATED' });
         
-        expect(actual.status).toEqual(LoginStatus.loggedIn);
+        expect(actual.loginStatus).toEqual(LoginStatus.loggedIn);
     });
 
     it('should set the authState when receiving USER_AUTHENTICATED action', () => {
@@ -51,7 +52,7 @@ describe('Auth reducer', () => {
         
         const actual = authReducer(null, { type: 'USER_NOT_AUTHENTICATED' });
         
-        expect(actual.status).toEqual(LoginStatus.loggedOut);
+        expect(actual.loginStatus).toEqual(LoginStatus.loggedOut);
     });
 
     it('should have null authState when receiving USER_NOT_AUTHENTICATED action', () => {
@@ -65,21 +66,21 @@ describe('Auth reducer', () => {
         
         const actual = authReducer(null, { type: 'LOGOUT_RECEIVED' });
         
-        expect(actual.status).toEqual(LoginStatus.loggingOut);
+        expect(actual.loginStatus).toEqual(LoginStatus.loggingOut);
     });
 
     it('should have a status of registering when receiving REGISTER_RECEIVED action', () => {
         
         const actual = authReducer(null, { type: 'REGISTER_RECEIVED' });
         
-        expect(actual.status).toEqual(LoginStatus.registering);
+        expect(actual.loginStatus).toEqual(LoginStatus.registering);
     });
 
     it('should have a status of register failed when receiving REGISTER_FAILURE action', () => {
         
         const actual = authReducer(null, { type: 'REGISTER_FAILURE' });
         
-        expect(actual.status).toEqual(LoginStatus.registerFailed);
+        expect(actual.loginStatus).toEqual(LoginStatus.registerFailed);
     });
 
 

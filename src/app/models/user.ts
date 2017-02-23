@@ -1,5 +1,3 @@
-import { IFirebaseKey } from './firebase-key';
-
 export interface IUser {
     firstName: string;
     surname: string;

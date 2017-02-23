@@ -1,5 +1,3 @@
-import { IFirebaseKey } from './';
-
 export interface ISquad {
     name: string;
     location: string;

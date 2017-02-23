@@ -1,18 +1,20 @@
-import { LoginStatus } from '../../models';
+import { LoginStatus, ActionStatus } from '../../models';
 import { AuthActions } from './../actions';
 import { Action } from '@ngrx/store';
 import { FirebaseAuthState } from 'angularfire2';
 
 export interface AuthState {
-    status: LoginStatus;
-    authState: FirebaseAuthState;
-    newlyRegistered: boolean;
+    loginStatus: LoginStatus;
+    registerStatus: ActionStatus;
+    passwordResetStatus: ActionStatus;
+    authState: FirebaseAuthState;    
 }
 
 const initialState: AuthState = {
-    status: LoginStatus.idle,
-    authState: null,
-    newlyRegistered: false
+    loginStatus: null,
+    registerStatus: null,
+    passwordResetStatus: null,
+    authState: null    
 };
 
 export default function (state = initialState, action: Action): AuthState {
@@ -21,59 +23,59 @@ export default function (state = initialState, action: Action): AuthState {
 
         case AuthActions.LOGIN_RECEIVED:
             return Object.assign({}, state, {
-                status: LoginStatus.loggingIn,
+                loginStatus: LoginStatus.loggingIn,
             });
 
         case AuthActions.LOGIN_FAILURE:
             return Object.assign({}, state, {
-                status: LoginStatus.loginFailed
+                loginStatus: LoginStatus.loginFailed
             });
 
         case AuthActions.USER_AUTHENTICATED:
             return Object.assign({}, state, {
-                status: LoginStatus.loggedIn,
+                loginStatus: LoginStatus.loggedIn,
                 authState: action.payload
             });
 
         case AuthActions.USER_NOT_AUTHENTICATED:
             return Object.assign({}, state, {
-                status: LoginStatus.loggedOut,
+                loginStatus: LoginStatus.loggedOut,
                 authState: null
             });
 
         case AuthActions.LOGOUT_RECEIVED:
             return Object.assign({}, state, {
-                status: LoginStatus.loggingOut,
+                loginStatus: LoginStatus.loggingOut,
             });
 
         case AuthActions.REGISTER_RECEIVED:
             return Object.assign({}, state, {
-                status: LoginStatus.registering
+                registerStatus: ActionStatus.inProgress
             });
 
         case AuthActions.REGISTER_FAILURE:
             return Object.assign({}, state, {
-                status: LoginStatus.registerFailed
+                registerStatus: ActionStatus.failed
+            });
+
+        case AuthActions.REGISTER_SUCCESS:
+            return Object.assign({}, state, {
+                registerStatus: ActionStatus.success
             });
 
         case AuthActions.PASSWORD_RESET_RECEIVED:
             return Object.assign({}, state, {
-                status: LoginStatus.passwordResetInProgress
+                passwordResetStatus: ActionStatus.inProgress
             });
 
         case AuthActions.PASSWORD_RESET_FAILURE:
             return Object.assign({}, state, {
-                status: LoginStatus.passwordResetFailed
+                passwordResetStatus: ActionStatus.failed
             });
 
         case AuthActions.PASSWORD_RESET_SUCCESS:
             return Object.assign({}, state, {
-                status: LoginStatus.passwordResetSuccess
-            });
-
-        case AuthActions.SET_STATUS_IDLE:
-            return Object.assign({}, state, {
-                status: LoginStatus.idle
+                passwordResetStatus: ActionStatus.success
             });
 
         default:

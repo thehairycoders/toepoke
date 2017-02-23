@@ -1,12 +1,12 @@
+import { environment } from '../../../../environments/environment';
 import { IAuthCredentials, LoginStatus } from '../../../models';
-import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 import * as RootStore from '../../../store';
 import { AuthActions } from '../../../store/actions';
 import { AuthState } from '../../../store/reducers/auth';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { environment } from '../../../../environments/environment';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -14,51 +14,47 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends StoreDrivenComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loading = false;
-  targetIfAuthorised: string;
+  authStoreSubscription: Subscription;
 
   constructor(
     private store: Store<RootStore.AppState>,
     private authActions: AuthActions,
     private router: Router,
-    private route: ActivatedRoute) {
-    super(router);
-  }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.setTargetRouteIfAuthorised();
+    this.authStoreSubscription = this.store.select(store => store.authState).subscribe(state => this.handleAuthState(state)); 
+  }
 
-    super.ngOnInit();
-    this.subscribeToStore();
+  ngOnDestroy() {
+    this.authStoreSubscription.unsubscribe();
   }
 
   login(authCredentials: IAuthCredentials): void {
     this.store.dispatch(this.authActions.loginUser(authCredentials));
   }
 
-  private subscribeToStore() {
-    this.storeSubscriptions.push(this.store.select(store => store.authState).subscribe(state => this.handleAuthState(state)));
-  }
-
   private handleAuthState(state: AuthState) {
-    this.toggleLoader(state.status);
+    this.toggleLoader(state.loginStatus);
+
     if (this.isUserLoggedIn(state)) {
       this.redirectToAuthorisedTarget();
     }
   }
 
-  private setTargetRouteIfAuthorised() {
-    this.route.queryParams.subscribe(params => this.targetIfAuthorised = params['redirect_url'] || environment.homeRoute);
-  }
-
   private isUserLoggedIn(state: AuthState): boolean {
-    return state.status === LoginStatus.loggedIn;
+    return state.loginStatus === LoginStatus.loggedIn;
   }
 
   private redirectToAuthorisedTarget(): void {
-    this.router.navigate([this.targetIfAuthorised]);
+   
+    this.route.queryParams.subscribe(params => {
+      this.router.navigate([params['redirect_url'] || environment.homeRoute]);
+    });
+
   }
 
   private toggleLoader(loginStatus: LoginStatus): void {

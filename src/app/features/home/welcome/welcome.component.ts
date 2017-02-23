@@ -1,39 +1,38 @@
 import { IUser, UserStatus } from '../../../models';
-import { StoreDrivenComponent } from '../../../shared/store-driven.component';
 import * as RootStore from '../../../store';
 import { UserActions } from '../../../store/actions';
 import { UserState } from '../../../store/reducers/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
-export class WelcomeComponent extends StoreDrivenComponent implements OnInit {
+export class WelcomeComponent implements OnInit {
 
   loading = false;
+  userStoreSubscription: Subscription;
 
   constructor(
     private store: Store<RootStore.AppState>,
     private userActions: UserActions,
     private router: Router) {
-    super(router);
   }
 
   ngOnInit() {
-    super.ngOnInit();
-    this.subscribeToStore();
+    this.userStoreSubscription = this.store.select(store => store.userState).subscribe(state => this.handleUserState(state));
+  }
+
+  ngOnDestroy() {
+    this.userStoreSubscription.unsubscribe();
   }
 
   initialiseUser(user: IUser): void {
     this.store.dispatch(this.userActions.initialiseUser(user));
-  }
-
-  private subscribeToStore() {
-    this.storeSubscriptions.push(this.store.select(store => store.userState).subscribe(state => this.handleUserState(state)));
   }
 
   private handleUserState(state: UserState) {
@@ -41,18 +40,8 @@ export class WelcomeComponent extends StoreDrivenComponent implements OnInit {
     this.redirectOnSuccess(state.status);
   }
 
-  private showLoader(userStatus: UserStatus): void {
-
-    switch (userStatus) {
-
-      case UserStatus.updateInProgress:
-        this.loading = true;
-        break;
-
-      default:
-        this.loading = false;
-    }
-
+  private showLoader(userStatus: UserStatus): void {    
+    this.loading = userStatus === UserStatus.updateInProgress;
   }
 
   private redirectOnSuccess(userStatus: UserStatus): void {
