@@ -4,15 +4,12 @@ import { UserActions } from './../actions';
 import { Action } from '@ngrx/store';
 import { FirebaseListObservable } from 'angularfire2';
 
-
 export interface UserState {
-    users: FirebaseListObservable<IUser>;
     user: FirebaseObjectObservable<IUser>;
     status: UserStatus;
 }
 
 const initialState: UserState = {
-    users: null,
     user: null,
     status: UserStatus.idle
 };
@@ -20,23 +17,7 @@ const initialState: UserState = {
 export default function (state = initialState, action: Action): UserState {
 
     switch (action.type) {
-
-        case UserActions.GET_USERS_RECEIVED:
-            return Object.assign({}, state, {
-                status: UserStatus.getUsersInProgress
-            });
-
-        case UserActions.GET_USERS_SUCCESS:
-            return Object.assign({}, state, {
-                status: UserStatus.getUsersSuccess,
-                users: action.payload
-            });
-
-        case UserActions.GET_USERS_FAILURE:
-            return Object.assign({}, state, {
-                status: UserStatus.getUsersFailure
-            });
-
+    
         case UserActions.GET_USER_RECEIVED:
             return Object.assign({}, state, {
                 status: UserStatus.getUserInProgress

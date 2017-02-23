@@ -11,25 +11,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserEffects {
-
-    @Effect() getUsers$ = this.actions$
-        .ofType(UserActions.GET_USERS_RECEIVED)
-        .switchMap(() =>
-            this.authService.angularFire.auth
-                .switchMap(authState => {
-
-                    if (authState) {
-                        return this.userService.getUsers()
-                            .switchMap((users) => Observable.of(this.userActions.getUsersSuccess(users)))
-                            .catch(error => Observable.of(this.userActions.getUsersFailure(error.message)));
-                    } else {
-                        return Observable.of({ type: UserActions.GET_USERS_FAILURE, payload: 'You must be logged in' });
-                    }
-
-                })
-                .catch(error => Observable.of({ type: UserActions.GET_USERS_FAILURE, payload: 'You must be logged in' }))
-        );
-
+  
     @Effect() getUser$ = this.actions$
         .ofType(UserActions.GET_USER_RECEIVED)
         .switchMap(() =>
@@ -71,8 +53,8 @@ export class UserEffects {
         .ofType(
         UserActions.INITIALISE_USER_SUCCESS,
         UserActions.INITIALISE_USER_FAILURE,
-        UserActions.GET_USERS_FAILURE,
-        UserActions.GET_USERS_SUCCESS)
+        UserActions.GET_USER_FAILURE,
+        UserActions.GET_USER_SUCCESS)
         .switchMap(() => Observable.of({ type: UserActions.SET_USER_STATUS_IDLE }));
 
     constructor(
