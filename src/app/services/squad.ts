@@ -17,7 +17,7 @@ export class SquadService {
     let playerSquadsRefs: Array<FirebaseObjectObservable<ISquad>> = [];
 
     for(let key in playerSquadIds) {
-        playerSquadsRefs.push(this.angularFire.database.object(`/playerSquads/${key}`));
+        playerSquadsRefs.push(this.angularFire.database.object(`/squads/${key}`));
     }
 
     return Observable.of(playerSquadsRefs);
@@ -27,7 +27,7 @@ export class SquadService {
 
     squad.createdDate = new Date().toISOString();
 
-    let squadKey = this.rootRef.child('playersSquads').push().key;
+    let squadKey = this.rootRef.child('squads').push().key;
 
     if (!squad.players) { squad.players = {}; }
     squad.players[userKey] = true;
@@ -36,12 +36,9 @@ export class SquadService {
     squad.managers[userKey] = true;
 
     const fanOutSquad = {};
-    fanOutSquad[`playerSquads/${squadKey}`] = squad;
-    fanOutSquad[`managerSquads/${squadKey}`] = squad;
-    fanOutSquad[`userReadable/${userKey}/playerSquads/${squadKey}`] = true;
-    fanOutSquad[`userReadable/${userKey}/managerSquads/${squadKey}`] = true;
-    fanOutSquad[`userWriteable/${userKey}/playerSquads/${squadKey}`] = true;
-    fanOutSquad[`userWriteable/${userKey}/managerSquads/${squadKey}`] = true;
+    fanOutSquad[`squads/${squadKey}`] = squad;
+    fanOutSquad[`user/${userKey}/playerSquads/${squadKey}`] = true;
+    fanOutSquad[`user/${userKey}/managerSquads/${squadKey}`] = true;
 
     return this.angularFire.database.object(`/`).update(fanOutSquad);
 

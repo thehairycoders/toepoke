@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { SquadsComponent, WelcomeFormComponent, UserDetailsComponent } from './components';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -20,6 +21,7 @@ import { GooglePlaceModule } from 'ng2-google-place-autocomplete';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     HttpModule,
     GooglePlaceModule,
