@@ -47,7 +47,7 @@ export class AuthEffects {
         .ofType(
         AuthActions.PASSWORD_RESET_SUCCESS,
         AuthActions.PASSWORD_RESET_FAILURE)
-        .switchMap(() => Observable.of({ type: AuthActions.SET_STATUS_IDLE }));
+        .switchMap(() => Observable.of({ type: AuthActions.SET_AUTH_STATUS_IDLE }));
 
     constructor(
         private actions$: Actions,

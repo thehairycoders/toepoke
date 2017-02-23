@@ -15,7 +15,7 @@ export class UserActions {
   static GET_USER_RECEIVED = 'GET_USER_RECEIVED';
   static GET_USER_FAILURE = 'GET_USER_FAILURE';
   static GET_USER_SUCCESS = 'GET_USER_SUCCESS';
-  static SET_STATUS_IDLE = 'SET_STATUS_IDLE';
+  static SET_USER_STATUS_IDLE = 'SET_USER_STATUS_IDLE';
 
   initialiseUser(user: IUser): Action {
     return {
@@ -79,7 +79,7 @@ export class UserActions {
 
   setUserStatusIdle(): Action {
     return {
-      type: UserActions.SET_STATUS_IDLE
+      type: UserActions.SET_USER_STATUS_IDLE
     };
   }
 

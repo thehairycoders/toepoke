@@ -73,7 +73,7 @@ export class UserEffects {
         UserActions.INITIALISE_USER_FAILURE,
         UserActions.GET_USERS_FAILURE,
         UserActions.GET_USERS_SUCCESS)
-        .switchMap(() => Observable.of({ type: UserActions.SET_STATUS_IDLE }));
+        .switchMap(() => Observable.of({ type: UserActions.SET_USER_STATUS_IDLE }));
 
     constructor(
         private actions$: Actions,

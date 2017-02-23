@@ -71,7 +71,7 @@ export default function (state = initialState, action: Action): AuthState {
                 status: LoginStatus.passwordResetSuccess
             });
 
-        case AuthActions.SET_STATUS_IDLE:
+        case AuthActions.SET_AUTH_STATUS_IDLE:
             return Object.assign({}, state, {
                 status: LoginStatus.idle
             });

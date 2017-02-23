@@ -107,9 +107,9 @@ describe('User reducer', () => {
     });
 
 
-    it('should have a status of idle when receiving SET_STATUS_IDLE action', () => {
+    it('should have a status of idle when receiving SET_USER_STATUS_IDLE action', () => {
         
-        const actual = userReducer(null, { type: 'SET_STATUS_IDLE' });
+        const actual = userReducer(null, { type: 'SET_USER_STATUS_IDLE' });
         
         expect(actual.status).toEqual(UserStatus.idle);
     });

@@ -68,7 +68,7 @@ export default function (state = initialState, action: Action): UserState {
                 status: UserStatus.updateFailure
             });
 
-        case UserActions.SET_STATUS_IDLE:
+        case UserActions.SET_USER_STATUS_IDLE:
             return Object.assign({}, state, {
                 status: UserStatus.idle
             });
