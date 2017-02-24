@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { LoginStatus } from './models';
 import * as RootStore from './store';
 import { AuthActions } from './store/actions';
@@ -12,18 +13,16 @@ import { Store } from '@ngrx/store';
 })
 export class AppComponent implements OnInit {
 
-  loggedIn = false;
+  loggedIn$: Observable<boolean>;
 
   constructor(
-    private store: Store<RootStore.AppState>,
+    private store: Store<RootStore.State>,
     private authActions: AuthActions,
     private router: Router) { }
 
   ngOnInit() {
 
-    this.store.select(store => store.authState).subscribe(authState => {
-      this.loggedIn = authState.status === LoginStatus.loggedIn;
-    });
+    this.loggedIn$ = this.store.select(RootStore.getLoggedIn);
 
     this.router.events.subscribe(val => {
       console.log(val);

@@ -17,7 +17,7 @@ export class WelcomeComponent extends StoreDrivenComponent implements OnInit {
   loading = false;
 
   constructor(
-    private store: Store<RootStore.AppState>,
+    private store: Store<RootStore.State>,
     private userActions: UserActions,
     private router: Router) {
     super(router);

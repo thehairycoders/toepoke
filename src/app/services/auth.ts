@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(public angularFire: AngularFire,
     private authActions: AuthActions,
-    private store: Store<RootStore.AppState>) {
+    private store: Store<RootStore.State>) {
 
     this.angularFire.auth.subscribe((auth: FirebaseAuthState) => {
 

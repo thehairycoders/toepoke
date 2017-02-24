@@ -18,7 +18,7 @@ export class AddSquadComponent extends StoreDrivenComponent implements OnInit {
   loading = false;
 
   constructor(
-    private store: Store<RootStore.AppState>,
+    private store: Store<RootStore.State>,
     private squadActions: SquadActions,
     private router: Router,
     private route: ActivatedRoute) {

@@ -22,7 +22,7 @@ export class DashboardComponent extends StoreDrivenComponent implements OnInit {
   managerSquads: FirebaseListObservable<ISquad>;
 
   constructor(
-    private store: Store<RootStore.AppState>,
+    private store: Store<RootStore.State>,
     private userActions: UserActions,
     private squadActions: SquadActions,
     private router: Router) {

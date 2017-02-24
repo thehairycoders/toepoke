@@ -11,9 +11,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { combineReducers, StoreModule } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { storeLogger } from 'ngrx-store-logger';
+import { createSelector } from 'reselect';
 
-export interface AppState {
-  authState: fromAuth.AuthState;
+export interface State {
+  authState: fromAuth.State;
   notifyState: fromNotify.NotifyState;
   userState: fromUser.UserState;
   squadState: fromSquad.SquadState;
@@ -31,7 +32,7 @@ export const composeStore = compose(
   localStorageSync(['authState']),
   combineReducers)
   ({
-    authState: fromAuth.default,
+    authState: fromAuth.reducer,
     notifyState: fromNotify.default,
     userState: fromUser.default,
     squadState: fromSquad.default
@@ -55,3 +56,11 @@ export function reducer(state: any, action: any) {
 })
 
 export class SharedStoreModule { };
+
+export const getAuthState = (state: State) => state.authState;
+export const getLoggingIn = createSelector(getAuthState, fromAuth.getLoggingIn);
+export const getLoggedIn = createSelector(getAuthState, fromAuth.getLoggedIn);
+export const getRegistering = createSelector(getAuthState, fromAuth.getRegistering);
+export const getResettingPassword = createSelector(getAuthState, fromAuth.getResettingPassword);
+export const getPasswordResetStatus = createSelector(getAuthState, fromAuth.getPasswordResetStatus);
+export const getPasswordResetEmail = createSelector(getAuthState, fromAuth.getPasswordResetEmail);

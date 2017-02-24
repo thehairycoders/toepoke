@@ -1,5 +1,6 @@
+import { ResetPasswordSuccessComponent } from './reset-password-success/reset-password-success.component';
 import { AuthRouting } from './auth.routing';
-import { AuthFormComponent, ResetPasswordFormComponent } from './components';
+import { AuthFormComponent, ResetPasswordFormComponent, LoadingIndicatorComponent } from './components';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -14,8 +15,10 @@ import { MaterialModule } from '@angular/material';
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
+    ResetPasswordSuccessComponent,
     AuthFormComponent,
-    ResetPasswordFormComponent
+    ResetPasswordFormComponent,
+    LoadingIndicatorComponent
   ],
   imports: [
     CommonModule,

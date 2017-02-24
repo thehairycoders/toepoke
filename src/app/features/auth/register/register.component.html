@@ -5,4 +5,4 @@
     <a md-button routerLink="../reset-password" color="primary">Forgot your password?</a>
   </div>
 </div>
-<md-progress-spinner *ngIf="loading" mode="indeterminate" class="loading"></md-progress-spinner>
+<app-loading-indicator [loading]="loading$ | async"></app-loading-indicator>

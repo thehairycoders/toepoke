@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 })
 export class NotifyComponent implements OnInit {
 
-  constructor(private store: Store<fromRoot.AppState>, private snackbar: MdSnackBar) { }
+  constructor(private store: Store<fromRoot.State>, private snackbar: MdSnackBar) { }
 
   ngOnInit() {
 

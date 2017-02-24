@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="start stretch" class="full-page">
     <div fxFlex fxLayout="column" fxLayoutAlign="start stretch">
-        <app-toolbar [loggedIn]="loggedIn" (logoutEvent)="logout()"></app-toolbar>
+        <app-toolbar [loggedIn]="loggedIn$ | async" (logoutEvent)="logout()"></app-toolbar>
         <div class="main" fxFlex>
             <router-outlet></router-outlet>
         </div>
